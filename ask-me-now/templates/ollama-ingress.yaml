@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ollama-ingress
+  labels:
+    name: ollama-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ollama.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ask-me-now-ollama
+            port: 
+              number: 11434

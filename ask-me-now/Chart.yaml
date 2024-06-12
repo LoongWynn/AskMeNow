@@ -1,0 +1,17 @@
+apiVersion: v2
+name: ask-me-now
+description: Your AI agent for git repositories.
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.0.0"
+
+dependencies:
+  - name: gitea
+    version: "~10.2.0"
+    repository: "https://dl.gitea.com/charts"
+  - name: ollama
+    version: "~0.35.0"
+    repository: "https://otwld.github.io/ollama-helm/"

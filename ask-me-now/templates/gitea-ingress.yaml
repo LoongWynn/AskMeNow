@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gitea-ingress
+  labels:
+    name: gitea-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gitea.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ask-me-now-gitea-http
+            port: 
+              number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gitea-ssh-ingress
+  labels:
+    name: gitea-ssh-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ssh.gitea.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ask-me-now-gitea-ssh
+            port: 
+              number: 22

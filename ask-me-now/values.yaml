@@ -1,0 +1,40 @@
+ollama:
+  gpu:
+    # -- Enable GPU integration
+    enabled: true
+    
+    # -- GPU type: 'nvidia' or 'amd'
+    type: 'amd'
+    
+    # -- Specify the number of GPU to 1
+    number: 1
+   
+  # -- List of models to pull at container startup
+  models: 
+    - qwen2
+
+
+gitea:
+  config:
+    database:
+      DB_TYPE: postgres
+    session:
+      PROVIDER: db
+    cache:
+      ADAPTER: redis
+    queue:
+      TYPE: level
+    indexer:
+      ISSUE_INDEXER_TYPE: bleve
+      REPO_INDEXER_ENABLED: true
+  redis-cluster:
+    enabled: true
+  postgresql:
+    enabled: true
+  postgresql-ha:
+    enabled: false
+  persistence:
+    enabled: true
+
+global:
+  hostname: 

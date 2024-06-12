@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: max-kb-ingress
+  labels:
+    name: max-kb-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ai.{{ .Values.global.hostname }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: max-kb-svc
+            port: 
+              number: 80

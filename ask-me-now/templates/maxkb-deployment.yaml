@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: max-kb
+spec:
+  selector:
+    matchLabels:
+      app: max-kb
+  template:
+    metadata:
+      labels:
+        app: max-kb
+    spec:
+      containers:
+      - name: max-kb
+        image: 1panel/maxkb
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: max-kb
+          containerPort: 8080
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-volume
+      volumes:
+      - name: postgres-volume
+        persistentVolumeClaim:
+          claimName: maxkb-data
+          
